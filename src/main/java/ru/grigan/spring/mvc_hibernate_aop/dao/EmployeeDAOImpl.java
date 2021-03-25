@@ -34,4 +34,12 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         Employee employee = session.get(Employee.class, id);
         return employee;
     }
+
+    @Override
+    public void deleteEmployee(int id) {
+        Session session = factory.getCurrentSession();
+        session.createQuery("delete from Employee where id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
+    }
 }
